@@ -59,68 +59,504 @@ st.set_page_config(
     initial_sidebar_state="expanded"
 )
 
-# Custom CSS for military C2 console aesthetic
+# Premium Modern CSS Styling System
 st.markdown("""
 <style>
+    :root {
+        --color-primary: #0f172a;
+        --color-secondary: #1e293b;
+        --color-tertiary: #334155;
+        --color-accent: #06b6d4;
+        --color-accent-light: #22d3ee;
+        --color-success: #10b981;
+        --color-warning: #f59e0b;
+        --color-danger: #ef4444;
+        --color-text-primary: #f1f5f9;
+        --color-text-secondary: #cbd5e1;
+        --color-border: #475569;
+        --spacing-xs: 4px;
+        --spacing-sm: 8px;
+        --spacing-md: 16px;
+        --spacing-lg: 24px;
+        --spacing-xl: 32px;
+        --radius-sm: 6px;
+        --radius-md: 8px;
+        --radius-lg: 12px;
+        --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.3);
+        --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.4), 0 2px 4px -1px rgba(0, 0, 0, 0.25);
+        --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.5), 0 4px 6px -2px rgba(0, 0, 0, 0.3);
+        --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    * {
+        box-sizing: border-box;
+    }
+
+    html, body {
+        margin: 0;
+        padding: 0;
+    }
+
     .stApp {
-        background: linear-gradient(135deg, #0a0a0a 0%, #1a0000 100%);
-        color: #ff0000;
+        background: linear-gradient(135deg, var(--color-primary) 0%, #0d1b2a 100%);
+        color: var(--color-text-primary);
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
+        letter-spacing: 0.3px;
     }
-    .stTextInput > div > div > input {
-        background-color: #1a0000;
-        color: #ff0000;
-        border: 1px solid #ff0000;
+
+    /* Typography Hierarchy */
+    h1, h2, h3, h4, h5, h6 {
+        letter-spacing: -0.5px;
+        font-weight: 600;
     }
-    .stButton > button {
-        background-color: #1a0000;
-        color: #ff0000;
-        border: 1px solid #ff0000;
-        font-weight: bold;
+
+    h1 {
+        font-size: 2.5rem;
+        line-height: 1.2;
+        margin: var(--spacing-lg) 0 var(--spacing-md) 0;
     }
-    .stButton > button:hover {
-        background-color: #ff0000;
-        color: #000000;
+
+    h2 {
+        font-size: 2rem;
+        line-height: 1.3;
+        margin: var(--spacing-lg) 0 var(--spacing-md) 0;
     }
+
+    h3 {
+        font-size: 1.5rem;
+        line-height: 1.4;
+        margin: var(--spacing-md) 0 var(--spacing-sm) 0;
+    }
+
+    h4 {
+        font-size: 1.125rem;
+        line-height: 1.5;
+        margin: var(--spacing-md) 0 var(--spacing-sm) 0;
+    }
+
+    /* Refined Input Styling */
+    .stTextInput > div > div > input,
+    .stTextArea > div > div > textarea,
     .stSelectbox > div > div > select {
-        background-color: #1a0000;
-        color: #ff0000;
-        border: 1px solid #ff0000;
+        background-color: var(--color-secondary) !important;
+        color: var(--color-text-primary) !important;
+        border: 1px solid var(--color-border) !important;
+        border-radius: var(--radius-md) !important;
+        padding: var(--spacing-sm) var(--spacing-md) !important;
+        font-size: 0.95rem !important;
+        transition: var(--transition) !important;
+        font-family: inherit !important;
     }
-    .stTextArea > div > div > textarea {
-        background-color: #0a0a0a;
-        color: #ff0000;
-        border: 1px solid #ff0000;
+
+    .stTextInput > div > div > input:focus,
+    .stTextArea > div > div > textarea:focus,
+    .stSelectbox > div > div > select:focus {
+        background-color: var(--color-tertiary) !important;
+        border-color: var(--color-accent) !important;
+        box-shadow: 0 0 0 3px rgba(6, 182, 212, 0.1) !important;
+        outline: none !important;
     }
-    .phase-complete {
-        border: 2px solid #00ff00;
-        background-color: #001100;
+
+    .stTextInput > div > div > input::placeholder {
+        color: var(--color-text-secondary) !important;
     }
-    .phase-active {
-        border: 2px solid #ffaa00;
-        background-color: #1a1a00;
+
+    /* Modern Button Styling */
+    .stButton > button {
+        background-color: var(--color-accent) !important;
+        color: white !important;
+        border: none !important;
+        border-radius: var(--radius-md) !important;
+        padding: 10px 24px !important;
+        font-weight: 600 !important;
+        font-size: 0.95rem !important;
+        transition: var(--transition) !important;
+        cursor: pointer !important;
+        text-transform: none !important;
+        box-shadow: var(--shadow-md) !important;
+        letter-spacing: 0.3px !important;
     }
-    .phase-pending {
-        border: 2px solid #666666;
-        background-color: #0a0a0a;
+
+    .stButton > button:hover {
+        background-color: var(--color-accent-light) !important;
+        transform: translateY(-2px) !important;
+        box-shadow: var(--shadow-lg) !important;
     }
-    .console-output {
-        background-color: #000000;
-        color: #00ff00;
-        font-family: 'Courier New', monospace;
-        padding: 10px;
-        border: 1px solid #333333;
-        max-height: 400px;
-        overflow-y: auto;
+
+    .stButton > button:active {
+        transform: translateY(0) !important;
+        box-shadow: var(--shadow-sm) !important;
     }
-    .military-header {
-        background: linear-gradient(90deg, #ff0000, #660000);
-        padding: 20px;
+
+    .stButton > button:disabled {
+        background-color: var(--color-tertiary) !important;
+        color: var(--color-text-secondary) !important;
+        cursor: not-allowed !important;
+        opacity: 0.6 !important;
+    }
+
+    /* Primary Button Variant */
+    .stButton > button[kind="primary"] {
+        background: linear-gradient(135deg, var(--color-accent) 0%, var(--color-accent-light) 100%) !important;
+        box-shadow: 0 4px 12px rgba(6, 182, 212, 0.3) !important;
+    }
+
+    .stButton > button[kind="primary"]:hover {
+        box-shadow: 0 8px 20px rgba(6, 182, 212, 0.4) !important;
+    }
+
+    /* Card/Container Styling */
+    .premium-card {
+        background-color: var(--color-secondary);
+        border: 1px solid var(--color-border);
+        border-radius: var(--radius-lg);
+        padding: var(--spacing-lg);
+        margin: var(--spacing-md) 0;
+        box-shadow: var(--shadow-sm);
+        transition: var(--transition);
+        backdrop-filter: blur(10px);
+    }
+
+    .premium-card:hover {
+        border-color: var(--color-accent);
+        box-shadow: 0 4px 20px rgba(6, 182, 212, 0.15);
+        transform: translateY(-2px);
+    }
+
+    /* Header Styling - Premium Modern */
+    .premium-header {
+        background: linear-gradient(135deg, var(--color-accent) 0%, var(--color-accent-light) 100%);
+        padding: var(--spacing-xl) var(--spacing-lg);
+        border-radius: var(--radius-lg);
+        margin-bottom: var(--spacing-xl);
+        box-shadow: 0 10px 30px rgba(6, 182, 212, 0.25);
         text-align: center;
-        font-weight: bold;
-        font-size: 24px;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .premium-header::before {
+        content: '';
+        position: absolute;
+        top: -50%;
+        right: -50%;
+        width: 100%;
+        height: 100%;
+        background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
+        animation: pulse-glow 3s ease-in-out infinite;
+    }
+
+    @keyframes pulse-glow {
+        0%, 100% { opacity: 0.5; }
+        50% { opacity: 1; }
+    }
+
+    .premium-header h1 {
+        color: white !important;
+        margin: 0 !important;
+        position: relative;
+        z-index: 1;
         text-transform: uppercase;
-        letter-spacing: 3px;
-        margin-bottom: 20px;
+        letter-spacing: 2px;
+        font-size: 2.25rem;
+    }
+
+    .premium-header > small {
+        color: rgba(255, 255, 255, 0.9) !important;
+        font-size: 0.875rem !important;
+        letter-spacing: 1px !important;
+        display: block !important;
+        margin-top: var(--spacing-sm) !important;
+        position: relative;
+        z-index: 1;
+    }
+
+    /* Phase Status Styling */
+    .phase-badge {
+        display: inline-block;
+        padding: 8px 16px;
+        border-radius: var(--radius-md);
+        font-weight: 600;
+        font-size: 0.875rem;
+        transition: var(--transition);
+        border: 1px solid;
+        letter-spacing: 0.5px;
+    }
+
+    .phase-complete {
+        background-color: rgba(16, 185, 129, 0.15) !important;
+        border-color: var(--color-success) !important;
+        color: var(--color-success) !important;
+    }
+
+    .phase-active {
+        background: linear-gradient(135deg, rgba(6, 182, 212, 0.15) 0%, rgba(34, 211, 238, 0.1) 100%) !important;
+        border-color: var(--color-accent) !important;
+        color: var(--color-accent-light) !important;
+        box-shadow: 0 0 10px rgba(6, 182, 212, 0.2) !important;
+        animation: pulse-border 2s ease-in-out infinite;
+    }
+
+    @keyframes pulse-border {
+        0%, 100% { box-shadow: 0 0 10px rgba(6, 182, 212, 0.2); }
+        50% { box-shadow: 0 0 20px rgba(6, 182, 212, 0.4); }
+    }
+
+    .phase-pending {
+        background-color: var(--color-tertiary) !important;
+        border-color: var(--color-border) !important;
+        color: var(--color-text-secondary) !important;
+    }
+
+    /* Console Output Styling */
+    .console-output {
+        background: linear-gradient(135deg, rgba(15, 23, 42, 0.95) 0%, rgba(30, 41, 59, 0.95) 100%);
+        color: var(--color-accent);
+        font-family: 'JetBrains Mono', 'Courier New', monospace;
+        padding: var(--spacing-lg);
+        border: 1px solid var(--color-border);
+        border-radius: var(--radius-md);
+        max-height: 500px;
+        overflow-y: auto;
+        margin: var(--spacing-md) 0;
+        line-height: 1.6;
+        font-size: 0.875rem;
+        box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.3);
+        word-break: break-word;
+        white-space: pre-wrap;
+    }
+
+    /* Scrollbar Styling */
+    .console-output::-webkit-scrollbar {
+        width: 8px;
+    }
+
+    .console-output::-webkit-scrollbar-track {
+        background: var(--color-secondary);
+        border-radius: var(--radius-sm);
+    }
+
+    .console-output::-webkit-scrollbar-thumb {
+        background: var(--color-accent);
+        border-radius: var(--radius-sm);
+    }
+
+    .console-output::-webkit-scrollbar-thumb:hover {
+        background: var(--color-accent-light);
+    }
+
+    /* Expander Styling */
+    .streamlit-expanderHeader {
+        background-color: var(--color-secondary) !important;
+        color: var(--color-text-primary) !important;
+        border: 1px solid var(--color-border) !important;
+        border-radius: var(--radius-md) !important;
+        padding: var(--spacing-md) !important;
+        transition: var(--transition) !important;
+    }
+
+    .streamlit-expanderHeader:hover {
+        background-color: var(--color-tertiary) !important;
+        border-color: var(--color-accent) !important;
+    }
+
+    /* Metric Cards */
+    [data-testid="metric-container"] {
+        background-color: var(--color-secondary) !important;
+        border: 1px solid var(--color-border) !important;
+        border-radius: var(--radius-lg) !important;
+        padding: var(--spacing-lg) !important;
+        box-shadow: var(--shadow-sm) !important;
+    }
+
+    /* Alert/Info/Success/Error Styling */
+    .stAlert {
+        background-color: var(--color-secondary) !important;
+        border: 1px solid var(--color-border) !important;
+        border-radius: var(--radius-md) !important;
+        padding: var(--spacing-md) !important;
+        color: var(--color-text-primary) !important;
+    }
+
+    .stSuccess {
+        background-color: rgba(16, 185, 129, 0.15) !important;
+        border-color: var(--color-success) !important;
+        color: var(--color-success) !important;
+    }
+
+    .stError {
+        background-color: rgba(239, 68, 68, 0.15) !important;
+        border-color: var(--color-danger) !important;
+        color: var(--color-danger) !important;
+    }
+
+    .stWarning {
+        background-color: rgba(245, 158, 11, 0.15) !important;
+        border-color: var(--color-warning) !important;
+        color: var(--color-warning) !important;
+    }
+
+    .stInfo {
+        background-color: rgba(6, 182, 212, 0.15) !important;
+        border-color: var(--color-accent) !important;
+        color: var(--color-accent-light) !important;
+    }
+
+    /* Columns Spacing */
+    .stColumns > div {
+        gap: var(--spacing-lg);
+    }
+
+    /* Section Headers */
+    .section-header {
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: var(--color-accent-light);
+        margin: var(--spacing-lg) 0 var(--spacing-md) 0;
+        padding-bottom: var(--spacing-md);
+        border-bottom: 2px solid var(--color-accent);
+        text-transform: uppercase;
+        letter-spacing: 1px;
+    }
+
+    /* Sidebar Styling */
+    [data-testid="stSidebar"] {
+        background: linear-gradient(180deg, var(--color-primary) 0%, #0d1b2a 100%) !important;
+    }
+
+    [data-testid="stSidebar"] > div > div {
+        background: transparent !important;
+    }
+
+    /* Code Block Styling */
+    .stCodeBlock {
+        background-color: var(--color-secondary) !important;
+        border: 1px solid var(--color-border) !important;
+        border-radius: var(--radius-md) !important;
+    }
+
+    code {
+        background-color: var(--color-tertiary);
+        color: var(--color-accent);
+        padding: 2px 6px;
+        border-radius: var(--radius-sm);
+        font-family: 'JetBrains Mono', 'Courier New', monospace;
+        font-size: 0.85rem;
+    }
+
+    /* Spinner and Loading */
+    .stSpinner {
+        color: var(--color-accent) !important;
+    }
+
+    /* Progress Bar */
+    .stProgress > div > div {
+        background: linear-gradient(90deg, var(--color-accent) 0%, var(--color-accent-light) 100%) !important;
+    }
+
+    /* Tab Styling */
+    .stTabs [data-baseweb="tab-list"] button {
+        background-color: transparent !important;
+        border-bottom: 2px solid transparent !important;
+        color: var(--color-text-secondary) !important;
+        transition: var(--transition) !important;
+    }
+
+    .stTabs [data-baseweb="tab-list"] button:hover {
+        color: var(--color-accent) !important;
+    }
+
+    .stTabs [data-baseweb="tab-list"] button[aria-selected="true"] {
+        border-bottom-color: var(--color-accent) !important;
+        color: var(--color-accent-light) !important;
+    }
+
+    /* Markdown Links */
+    a {
+        color: var(--color-accent) !important;
+        text-decoration: none !important;
+        transition: var(--transition) !important;
+    }
+
+    a:hover {
+        color: var(--color-accent-light) !important;
+        text-decoration: underline !important;
+    }
+
+    /* Special Section - Phase Grid */
+    .phase-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: var(--spacing-lg);
+        margin: var(--spacing-lg) 0;
+    }
+
+    .phase-item {
+        background-color: var(--color-secondary);
+        border: 1px solid var(--color-border);
+        border-radius: var(--radius-lg);
+        padding: var(--spacing-lg);
+        transition: var(--transition);
+        position: relative;
+    }
+
+    .phase-item:hover {
+        border-color: var(--color-accent);
+        box-shadow: 0 8px 24px rgba(6, 182, 212, 0.2);
+        transform: translateY(-4px);
+    }
+
+    /* Gradient Accent Line */
+    .accent-line {
+        height: 3px;
+        background: linear-gradient(90deg, var(--color-accent) 0%, var(--color-accent-light) 100%);
+        border-radius: 2px;
+        margin: var(--spacing-md) 0;
+    }
+
+    /* Status Badge */
+    .status-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: var(--spacing-xs);
+        padding: 6px 12px;
+        border-radius: var(--radius-sm);
+        font-size: 0.8rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+    }
+
+    .status-success {
+        background-color: rgba(16, 185, 129, 0.2);
+        color: var(--color-success);
+    }
+
+    .status-active {
+        background-color: rgba(6, 182, 212, 0.2);
+        color: var(--color-accent);
+        animation: pulse-glow 2s ease-in-out infinite;
+    }
+
+    .status-pending {
+        background-color: rgba(100, 116, 139, 0.2);
+        color: var(--color-text-secondary);
+    }
+
+    /* Fade-in Animation */
+    @keyframes fade-in {
+        from {
+            opacity: 0;
+            transform: translateY(10px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    .fade-in {
+        animation: fade-in 0.5s ease-out;
     }
 </style>
 """, unsafe_allow_html=True)
@@ -359,17 +795,18 @@ class NamespaceDominanceEngine:
             st.session_state.operation_start_time = None
             
     def render_header(self):
-        """Render the military-style header"""
+        """Render the premium header"""
         st.markdown("""
-        <div class="military-header">
-            ⚡ NAMESPACE DOMINANCE ENGINE ⚡
-            <br><small>SEMI-AUTONOMOUS AGENTIC DNS INTELLIGENCE PLATFORM</small>
+        <div class="premium-header">
+            <h1>⚡ NAMESPACE DOMINANCE ENGINE</h1>
+            <small>SEMI-AUTONOMOUS AGENTIC DNS INTELLIGENCE PLATFORM</small>
         </div>
         """, unsafe_allow_html=True)
         
     def render_sidebar(self):
-        """Render the control sidebar"""
-        st.sidebar.markdown("### ⚙️ CONFIGURATION")
+        """Render the premium sidebar"""
+        st.sidebar.markdown('<div class="section-header">⚙️ Configuration</div>', unsafe_allow_html=True)
+        st.sidebar.markdown('<div class="accent-line"></div>', unsafe_allow_html=True)
         
         # API Key input
         api_key = st.sidebar.text_input(
@@ -395,9 +832,10 @@ class NamespaceDominanceEngine:
                 st.sidebar.success("✅ AI Agent Initialized")
             except Exception as e:
                 st.sidebar.error(f"❌ AI Agent Failed: {str(e)}")
-                
-        # Phase progress indicator
-        st.sidebar.markdown("### 📊 PHASE PROGRESS")
+        
+        st.sidebar.markdown("")  # Spacing
+        st.sidebar.markdown('<div class="section-header">📊 Phase Progress</div>', unsafe_allow_html=True)
+        st.sidebar.markdown('<div class="accent-line"></div>', unsafe_allow_html=True)
         
         phase_names = [
             "Event Horizon Framing",
@@ -412,40 +850,48 @@ class NamespaceDominanceEngine:
         for i, name in enumerate(phase_names):
             if i < st.session_state.current_phase:
                 status = "✅"
-                css_class = "phase-complete"
+                css_class = "phase-badge phase-complete"
             elif i == st.session_state.current_phase:
                 status = "🔄"
-                css_class = "phase-active"
+                css_class = "phase-badge phase-active"
             else:
                 status = "⏳"
-                css_class = "phase-pending"
+                css_class = "phase-badge phase-pending"
                 
             st.sidebar.markdown(f"""
-            <div class="{css_class}" style="padding: 5px; margin: 2px; border-radius: 3px;">
+            <div class="{css_class}" style="width: 100%; margin: {6}px 0;">
                 {status} Phase {i}: {name}
             </div>
             """, unsafe_allow_html=True)
+        
+        st.sidebar.markdown("")  # Spacing
+        st.sidebar.markdown('<div class="section-header">🎮 Controls</div>', unsafe_allow_html=True)
+        st.sidebar.markdown('<div class="accent-line"></div>', unsafe_allow_html=True)
+        
+        col1, col2 = st.sidebar.columns(2)
+        
+        with col1:
+            if st.button(
+                "🚀 START",
+                disabled=not (api_key and target_domain),
+                help="Initialize the intelligence operation",
+                use_container_width=True
+            ):
+                self.start_operation()
             
-        # Operation controls
-        st.sidebar.markdown("### 🎮 OPERATION CONTROLS")
+        with col2:
+            if st.button(
+                "📥 EXPORT",
+                disabled=st.session_state.namespace_map is None,
+                help="Export operation results as JSON",
+                use_container_width=True
+            ):
+                self.export_results()
         
         if st.sidebar.button(
-            "🚀 START OPERATION",
-            disabled=not (api_key and target_domain),
-            help="Initialize the intelligence operation"
-        ):
-            self.start_operation()
-            
-        if st.sidebar.button(
-            "📥 EXPORT RESULTS",
-            disabled=st.session_state.namespace_map is None,
-            help="Export operation results as JSON"
-        ):
-            self.export_results()
-            
-        if st.sidebar.button(
             "🔄 RESET SESSION",
-            help="Clear all session data and start fresh"
+            help="Clear all session data and start fresh",
+            use_container_width=True
         ):
             self.reset_session()
             
@@ -525,7 +971,8 @@ class NamespaceDominanceEngine:
         
         current_phase_name = phase_names[st.session_state.current_phase]
         
-        st.markdown(f"### 🎯 Phase {st.session_state.current_phase}: {current_phase_name}")
+        st.markdown(f'<div class="section-header">🎯 Phase {st.session_state.current_phase}: {current_phase_name}</div>', unsafe_allow_html=True)
+        st.markdown('<div class="accent-line"></div>', unsafe_allow_html=True)
         
         # Generate phase commands if not already done
         if not st.session_state.current_reasoning and not st.session_state.current_commands:
@@ -549,32 +996,33 @@ class NamespaceDominanceEngine:
                 
         # Display AI reasoning
         if st.session_state.current_reasoning:
-            st.markdown("#### 🧠 AI TACTICAL REASONING")
-            st.markdown(f"""
-            <div style="background-color: #1a0000; padding: 15px; border: 1px solid #ff0000; border-radius: 5px;">
-            {st.session_state.current_reasoning}
-            </div>
-            """, unsafe_allow_html=True)
+            with st.container():
+                st.markdown('<h4 style="color: #22d3ee; margin-bottom: 12px;">🧠 AI Tactical Reasoning</h4>', unsafe_allow_html=True)
+                st.markdown(f"""
+                <div class="premium-card">
+                {st.session_state.current_reasoning}
+                </div>
+                """, unsafe_allow_html=True)
             
         # Display generated commands
         if st.session_state.current_commands:
-            st.markdown("#### ⚡ DYNAMICALLY GENERATED COMMANDS")
+            st.markdown('<h4 style="color: #22d3ee; margin-top: 24px; margin-bottom: 12px;">⚡ Dynamically Generated Commands</h4>', unsafe_allow_html=True)
             
             for i, cmd in enumerate(st.session_state.current_commands, 1):
-                st.markdown(f"**Command {i}:**")
+                st.markdown(f'<span style="color: #06b6d4; font-weight: 600;">Command {i}:</span>', unsafe_allow_html=True)
                 st.code(cmd, language="bash")
                 
             # Expected outcome
             if hasattr(st.session_state.ai_agent, 'model'):
-                st.markdown("#### 🎯 EXPECTED OUTCOME")
+                st.markdown('<h4 style="color: #22d3ee; margin-top: 24px; margin-bottom: 12px;">🎯 Expected Outcome</h4>', unsafe_allow_html=True)
                 st.markdown(f"""
-                <div style="background-color: #001100; padding: 10px; border: 1px solid #00ff00; border-radius: 5px; color: #00ff00;">
-                Intelligence gathering will achieve the phase objectives through passive reconnaissance techniques.
+                <div class="premium-card" style="border-color: #10b981; background-color: rgba(16, 185, 129, 0.1);">
+                <span style="color: #10b981;">✓ Intelligence gathering will achieve the phase objectives through passive reconnaissance techniques.</span>
                 </div>
                 """, unsafe_allow_html=True)
                 
             # Human approval gate
-            st.markdown("#### 🔐 HUMAN-IN-THE-LOOP APPROVAL")
+            st.markdown('<h4 style="color: #22d3ee; margin-top: 24px; margin-bottom: 12px;">🔐 Human-in-the-Loop Approval</h4>', unsafe_allow_html=True)
             
             col1, col2 = st.columns(2)
             
@@ -629,7 +1077,7 @@ class NamespaceDominanceEngine:
         log_container = st.container()
         
         with log_container:
-            st.markdown("#### 📡 EXECUTION LOG")
+            st.markdown('<h4 style="color: #22d3ee; margin-bottom: 12px;">📡 Execution Log</h4>', unsafe_allow_html=True)
             execution_log = st.empty()
             log_content = []
             
@@ -705,7 +1153,8 @@ class NamespaceDominanceEngine:
         
     def render_operation_log(self):
         """Render the operation log"""
-        st.markdown("### 📋 OPERATION LOG")
+        st.markdown('<div class="section-header">📋 Operation Log</div>', unsafe_allow_html=True)
+        st.markdown('<div class="accent-line"></div>', unsafe_allow_html=True)
         
         if not st.session_state.operation_log:
             st.info("No operations logged yet")
@@ -727,52 +1176,72 @@ class NamespaceDominanceEngine:
             
     def render_phase_summary(self):
         """Render summary of completed phases"""
-        st.markdown("### 📊 PHASE SUMMARY")
+        st.markdown('<div class="section-header">📊 Phase Summary</div>', unsafe_allow_html=True)
+        st.markdown('<div class="accent-line"></div>', unsafe_allow_html=True)
         
         if not st.session_state.phase_results:
             st.info("No phases completed yet")
             return
-            
+        
+        # Create phase grid
+        st.markdown('<div style="margin-top: 24px;"></div>', unsafe_allow_html=True)
+        
         for phase_num, result in st.session_state.phase_results.items():
-            with st.expander(f"Phase {phase_num}: {result.phase_name} - {result.status}"):
-                col1, col2 = st.columns(2)
+            with st.expander(f"📍 Phase {phase_num}: {result.phase_name} — {result.status}"):
+                col1, col2, col3 = st.columns(3)
                 
                 with col1:
-                    st.markdown(f"**Status:** {result.status}")
-                    st.markdown(f"**Confidence:** {result.confidence_score:.1%}")
-                    st.markdown(f"**Duration:** {(result.end_time - result.start_time).total_seconds():.1f}s")
-                    st.markdown(f"**Commands Executed:** {len(result.commands_executed)}")
+                    st.markdown(f'<div class="status-badge status-active">Status: {result.status}</div>', unsafe_allow_html=True)
+                    st.metric("Confidence", f"{result.confidence_score:.1%}")
                     
                 with col2:
-                    st.markdown("**Reasoning:**")
-                    st.markdown(f"<small>{result.reasoning[:200]}...</small>" if len(result.reasoning) > 200 else f"<small>{result.reasoning}</small>", unsafe_allow_html=True)
+                    duration = (result.end_time - result.start_time).total_seconds()
+                    st.metric("Duration", f"{duration:.1f}s")
+                    st.metric("Commands", len(result.commands_executed))
                     
+                with col3:
+                    st.markdown("**Reasoning Summary:**")
+                    reasoning_text = f"{result.reasoning[:250]}..." if len(result.reasoning) > 250 else result.reasoning
+                    st.markdown(f'<span style="font-size: 0.85rem; color: #cbd5e1;">{reasoning_text}</span>', unsafe_allow_html=True)
+                
+                # Findings section
                 if result.findings:
-                    st.markdown("**Findings:**")
+                    st.markdown('<div style="margin-top: 16px; padding-top: 16px; border-top: 1px solid #475569;"></div>', unsafe_allow_html=True)
+                    st.markdown('<h5 style="color: #22d3ee;">📋 Command Findings</h5>', unsafe_allow_html=True)
+                    
                     for key, finding in result.findings.items():
-                        status_icon = "✅" if finding.get("status") == "success" else "❌"
-                        st.markdown(f"{status_icon} {key}: {finding.get('status', 'unknown')}")
+                        if finding.get("status") == "success":
+                            st.markdown(f'<div class="premium-card" style="border-left: 4px solid #10b981;"><span style="color: #10b981;">✅</span> <strong>{key}</strong>: SUCCESS</div>', unsafe_allow_html=True)
+                        else:
+                            st.markdown(f'<div class="premium-card" style="border-left: 4px solid #ef4444;"><span style="color: #ef4444;">❌</span> <strong>{key}</strong>: FAILED</div>', unsafe_allow_html=True)
                         
     def render_namespace_map(self):
         """Render the master namespace map"""
-        st.markdown("### 🗺️ MASTER NAMESPACE MAP")
+        st.markdown('<div class="section-header">🗺️ Master Namespace Map</div>', unsafe_allow_html=True)
+        st.markdown('<div class="accent-line"></div>', unsafe_allow_html=True)
         
         if not st.session_state.phase_results:
             st.info("Namespace map will populate as phases complete")
             return
+        
+        st.markdown('<div style="margin-top: 24px;"></div>', unsafe_allow_html=True)
             
-        # Create visual representation
+        # Create visual representation with modern colors
         try:
             dot = graphviz.Digraph(comment='Namespace Map', format='png')
-            dot.attr(bgcolor='black', fontcolor='red', node_color='red', edge_color='red')
+            dot.attr(bgcolor='#0f172a', fontcolor='#22d3ee', graph_attr={'bgcolor':'#0f172a', 'splines': 'curved'})
+            dot.attr('node', fontname='Arial', fontcolor='#f1f5f9', style='filled', fillcolor='#1e293b', color='#06b6d4', penwidth='2')
+            dot.attr('edge', color='#475569', penwidth='1.5')
             
-            # Add target domain
-            dot.node(st.session_state.target_domain, st.session_state.target_domain, color='red', fontcolor='red')
+            # Add target domain with emphasis
+            dot.node(st.session_state.target_domain, st.session_state.target_domain, 
+                    fillcolor='#06b6d4', fontcolor='#0f172a', penwidth='3')
             
-            # Add phase nodes
+            # Add phase nodes with color coding
             for phase_num, result in st.session_state.phase_results.items():
                 phase_label = f"Phase {phase_num}\n{result.status}"
-                dot.attr('node', shape='box', color='green' if result.status == 'COMPLETED' else 'yellow')
+                color = '#10b981' if result.status == 'COMPLETED' else '#f59e0b'
+                dot.attr('node', fillcolor=color, color=color, fontcolor='#0f172a')
                 dot.node(f"phase_{phase_num}", phase_label)
                 dot.edge(st.session_state.target_domain, f"phase_{phase_num}")
                 
@@ -780,41 +1249,51 @@ class NamespaceDominanceEngine:
             st.graphviz_chart(dot)
             
         except Exception as e:
-            st.error(f"Graph rendering failed: {str(e)}")
+            st.markdown(f'<div class="premium-card" style="border-left: 4px solid #ef4444;"><span style="color: #ef4444;">⚠️</span> Graph rendering failed: {str(e)}</div>', unsafe_allow_html=True)
             
         # Show structured data
-        if st.button("📋 Show Raw Data"):
+        if st.button("📋 Show Raw Data", use_container_width=True):
             st.json({
                 str(k): asdict(v) for k, v in st.session_state.phase_results.items()
             })
             
     def render_final_results(self):
         """Render final operation results"""
-        st.markdown("### 🎉 OPERATION COMPLETE")
+        st.markdown('<div class="section-header">🎉 Operation Complete</div>', unsafe_allow_html=True)
+        st.markdown('<div class="accent-line"></div>', unsafe_allow_html=True)
         
-        if st.session_state.operation_start_time:
-            duration = datetime.now(timezone.utc) - st.session_state.operation_start_time
-            st.markdown(f"**Total Duration:** {duration.total_seconds():.1f} seconds")
+        st.markdown('<div style="margin-top: 24px;"></div>', unsafe_allow_html=True)
+        
+        col1, col2 = st.columns(2)
+        
+        with col1:
+            if st.session_state.operation_start_time:
+                duration = datetime.now(timezone.utc) - st.session_state.operation_start_time
+                st.metric("Total Duration", f"{duration.total_seconds():.1f}s")
+                
+        with col2:
+            # Calculate overall confidence
+            if st.session_state.phase_results:
+                total_confidence = sum(r.confidence_score for r in st.session_state.phase_results.values())
+                avg_confidence = total_confidence / len(st.session_state.phase_results)
+                st.metric("Overall Confidence", f"{avg_confidence:.1%}")
+        
+        st.markdown('<div style="margin-top: 32px;"></div>', unsafe_allow_html=True)
+        st.markdown('<h4 style="color: #22d3ee;">📤 Export Results</h4>', unsafe_allow_html=True)
             
-        # Calculate overall confidence
-        if st.session_state.phase_results:
-            total_confidence = sum(r.confidence_score for r in st.session_state.phase_results.values())
-            avg_confidence = total_confidence / len(st.session_state.phase_results)
-            st.markdown(f"**Overall Confidence:** {avg_confidence:.1%}")
-            
-        # Export options
+        # Export options in a grid
         col1, col2, col3 = st.columns(3)
         
         with col1:
-            if st.button("📄 Export JSON"):
+            if st.button("📄 Export JSON", use_container_width=True):
                 self.export_json()
                 
         with col2:
-            if st.button("📊 Export Report"):
+            if st.button("📊 Export Report", use_container_width=True):
                 self.export_report()
                 
         with col3:
-            if st.button("🔄 New Operation"):
+            if st.button("🔄 New Operation", use_container_width=True):
                 self.reset_session()
                 
     def export_json(self):
@@ -932,29 +1411,55 @@ Classification: RESTRICTED - Passive Reconnaissance Only
                 self.render_final_results()
         else:
             st.markdown("""
-            ### 🎯 MISSION BRIEFING
-            
-            Welcome to the **Namespace Dominance Engine** - a semi-autonomous agentic platform for 
-            comprehensive DNS and domain intelligence gathering.
-            
-            **CAPABILITIES:**
-            - 🔍 6-Phase intelligence workflow
-            - 🧠 AI-powered dynamic command generation
-            - 🔒 100% passive reconnaissance
-            - 👤 Human-in-the-loop approval
-            - 📊 Real-time progress tracking
-            - 🗺️ Master namespace mapping
-            
-            **GET STARTED:**
-            1. Enter your Gemini API key in the sidebar
-            2. Specify your target domain
-            3. Click "START OPERATION" to begin
-            
-            **DOCTRINE:**
-            This platform operates under strict passive reconnaissance protocols.
-            All intelligence is gathered from publicly available sources without 
-            direct interaction with target infrastructure.
-            """)
+            <div style="margin-top: 40px; margin-bottom: 40px;">
+                <h2 style="color: #22d3ee; text-align: center; margin-bottom: 32px;">🎯 Mission Briefing</h2>
+                
+                <div class="premium-card" style="margin: 24px 0; padding: 32px;">
+                    <p style="font-size: 1.1rem; line-height: 1.8; color: #f1f5f9; margin: 0;">
+                    Welcome to the <strong style="color: #22d3ee;">Namespace Dominance Engine</strong> — 
+                    a semi-autonomous agentic platform for comprehensive DNS and domain intelligence gathering. 
+                    This enterprise-grade platform combines AI-powered reconnaissance with human oversight to deliver 
+                    actionable intelligence through passive, non-invasive techniques.
+                    </p>
+                </div>
+                
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin: 32px 0;">
+                    <div class="premium-card" style="padding: 24px;">
+                        <h3 style="color: #22d3ee; margin-top: 0; margin-bottom: 16px;">✨ Capabilities</h3>
+                        <ul style="margin: 0; padding-left: 20px; line-height: 2;">
+                            <li>🔍 7-Phase intelligence workflow</li>
+                            <li>🧠 AI-powered dynamic command generation</li>
+                            <li>🔒 100% passive reconnaissance</li>
+                            <li>👤 Human-in-the-loop approval gates</li>
+                            <li>📊 Real-time progress tracking</li>
+                            <li>🗺️ Master namespace mapping</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="premium-card" style="padding: 24px;">
+                        <h3 style="color: #22d3ee; margin-top: 0; margin-bottom: 16px;">🚀 Quick Start</h3>
+                        <ol style="margin: 0; padding-left: 20px; line-height: 2;">
+                            <li>Enter your Gemini API key in the sidebar</li>
+                            <li>Specify your target domain for analysis</li>
+                            <li>Click "START" to begin intelligence gathering</li>
+                            <li>Review and approve AI-generated commands</li>
+                            <li>Monitor execution and review findings</li>
+                            <li>Export comprehensive intelligence reports</li>
+                        </ol>
+                    </div>
+                </div>
+                
+                <div class="premium-card" style="margin-top: 32px; padding: 24px; border-left: 4px solid #06b6d4; background-color: rgba(6, 182, 212, 0.05);">
+                    <h4 style="color: #22d3ee; margin-top: 0;">📋 Operating Doctrine</h4>
+                    <p style="color: #cbd5e1; line-height: 1.8; margin: 0;">
+                    This platform operates under strict <strong>passive reconnaissance protocols</strong>. 
+                    All intelligence is gathered exclusively from publicly available sources without any direct 
+                    interaction with target infrastructure. Each phase is carefully designed to maintain operational 
+                    security and legal compliance while maximizing intelligence coverage.
+                    </p>
+                </div>
+            </div>
+            """, unsafe_allow_html=True)
             
 def main():
     """Main entry point"""
